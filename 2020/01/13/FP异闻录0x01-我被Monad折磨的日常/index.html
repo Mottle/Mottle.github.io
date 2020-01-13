@@ -4,17 +4,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>随笔-0X01 | Outside</title>
+  <title>FP异闻录0x01:我被Monad折磨的日常 | Outside</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我曾在满天烟花中逃离 &amp;emsp;&amp;emsp;昨天去影院看了传的很火的《烟花》。之前听说《烟花》评分并不太高，我看了以后觉得《烟花》在很多方面确实是不如君名，然而这并不是说《烟花》就一无是处，虽然画面稍稍有些欠佳，后半段的3D特效略迷，剧情跳转太突然以外，整体效果还是不错，让人留有几分回味。">
-<meta name="keywords" content="随想录">
+  <meta name="description" content="somewhere outside the world">
+<meta name="keywords" content="FP,Scala,Haskell">
 <meta property="og:type" content="article">
-<meta property="og:title" content="随笔-0X01">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2017&#x2F;12&#x2F;03&#x2F;%E9%9A%8F%E7%AC%94-0X01&#x2F;">
+<meta property="og:title" content="FP异闻录0x01:我被Monad折磨的日常">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;13&#x2F;FP%E5%BC%82%E9%97%BB%E5%BD%950x01-%E6%88%91%E8%A2%ABMonad%E6%8A%98%E7%A3%A8%E7%9A%84%E6%97%A5%E5%B8%B8&#x2F;">
 <meta property="og:site_name" content="Outside">
-<meta property="og:description" content="我曾在满天烟花中逃离 &amp;emsp;&amp;emsp;昨天去影院看了传的很火的《烟花》。之前听说《烟花》评分并不太高，我看了以后觉得《烟花》在很多方面确实是不如君名，然而这并不是说《烟花》就一无是处，虽然画面稍稍有些欠佳，后半段的3D特效略迷，剧情跳转太突然以外，整体效果还是不错，让人留有几分回味。">
+<meta property="og:description" content="somewhere outside the world">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-03T07:59:15.318Z">
+<meta property="og:updated_time" content="2020-01-13T14:46:30.920Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Outside" type="application/atom+xml">
@@ -67,10 +67,10 @@
   </div>
 </header>
     <div class="outer">
-      <section id="main"><article id="post-随笔-0X01" class="article article-type-post" itemscope itemprop="blogPost">
+      <section id="main"><article id="post-FP异闻录0x01-我被Monad折磨的日常" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/12/03/%E9%9A%8F%E7%AC%94-0X01/" class="article-date">
-  <time datetime="2017-12-03T14:19:00.000Z" itemprop="datePublished">2017-12-03</time>
+    <a href="/2020/01/13/FP%E5%BC%82%E9%97%BB%E5%BD%950x01-%E6%88%91%E8%A2%ABMonad%E6%8A%98%E7%A3%A8%E7%9A%84%E6%97%A5%E5%B8%B8/" class="article-date">
+  <time datetime="2020-01-13T14:45:44.000Z" itemprop="datePublished">2020-01-13</time>
 </a>
     
   </div>
@@ -81,7 +81,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      随笔-0X01
+      FP异闻录0x01:我被Monad折磨的日常
     </h1>
   
 
@@ -89,22 +89,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="我曾在满天烟花中逃离"><a href="#我曾在满天烟花中逃离" class="headerlink" title="我曾在满天烟花中逃离"></a>我曾在满天烟花中逃离</h1><!-- ![](http://p0d8bd6j2.bkt.clouddn.com/17-12-3/37071352.jpg) -->
-<p>&emsp;&emsp;昨天去影院看了传的很火的《烟花》。之前听说《烟花》评分并不太高，我看了以后觉得《烟花》在很多方面确实是不如君名，然而这并不是说《烟花》就一无是处，虽然画面稍稍有些欠佳，后半段的3D特效略迷，剧情跳转太突然以外，整体效果还是不错，让人留有几分回味。<a id="more"></a><br>&emsp;&emsp;烟花讲述的是国中生典道在那个夏日里与奈砂的邂逅。父母离异，母亲将再婚的奈砂要与典道一同私奔，离开小镇前往东京。在逃离的路上那个懦弱的典道一次次利用这名为幻想的玻璃珠，一次次喊出もし（如果）来改变过去。他改变了游泳比赛失败的过去、改变了车站里被奈纱父亲一拳击倒的过去、改变了在火车上被奈纱母亲发现的过去。却发现他们无论如何也无法摆脱现实追捕，几般辗转，最终坠入玻璃珠中幻想世界。<br>&emsp;&emsp;其实奈砂知道他们无论如何也不可能逃脱，其实典道也明白他们不管怎样都无法躲避。<strong><em>那场名为现实的大雨终将如期而至。有些东西，其实注定</em></strong><br>&emsp;&emsp;玻璃珠中的世界就是人们所期望的那个完美的世界。人们期望完美，人们妄图改变过去，改变自己的过失，改变这个不完满的世界，可是就如《烟花》中那样，任你如何改变也无法逃脱，那些让你痛苦的不是游泳比赛失利、不是在车站里被奈纱父亲击倒，也不是在火车上被人发现，让你痛苦的并不是你过去的得失，<strong>而是你必须要面对的现实。</strong><br>&emsp;&emsp;烟花穿插了整个故事，从一开始主角典道与祐介以及朋友们所争执的“烟花到底是圆的还是扁的”，到他们前往灯塔求证，他们看到了扁的烟花，扁平的烟花就是这个不完美的世界。可典道改变过去之后和奈纱看到的却是圆的烟花，那是在典道幻想中世界的产物，一切如他们所愿。可惜，再圆满的烟花也只能璀璨一瞬间。即使是玻璃珠的世界也会被烟花师点燃。<br>&emsp;&emsp;那颗玻璃珠的烟花还是被点燃了，玻璃珠的碎片是一个个完满的圆的世界，碎片中的照映的是人们美好的幻想。就如祐介所说“这个世上只有圆的烟花”。无论现实如何不如意，未来依旧未来，烟花仍是圆的。<br>&emsp;&emsp;典道最终没来参加新学期的点名，其实典道已经逃脱了，逃脱了这个被禁锢在玻璃珠中的世界，他要前往更远的远方，他要去追寻重逢。升起的烟花到底是圆的还是扁的其实已经不重要了。故事本应如此，在一个平淡无奇的夏日，典道与朋友们一同在灯塔上看烟花绽放，奈纱独自一人感受这若有若无的孤独，这个下午与平常没什么不同。而典道，奈纱…他们都在等候，等候一个更美好的未来。</p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=496869422&auto=1&height=66"></iframe>
-
-
+        
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2017/12/03/%E9%9A%8F%E7%AC%94-0X01/" data-id="ck5ck8xrk000b8jnideee54ym" class="article-share-link">Share</a>
+        <a data-url="http://yoursite.com/2020/01/13/FP%E5%BC%82%E9%97%BB%E5%BD%950x01-%E6%88%91%E8%A2%ABMonad%E6%8A%98%E7%A3%A8%E7%9A%84%E6%97%A5%E5%B8%B8/" data-id="ck5ck8xr000008jni7ss7dwxn" class="article-share-link">Share</a>
       
 
       
 
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9A%8F%E6%83%B3%E5%BD%95/" rel="tag">随想录</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FP/" rel="tag">FP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Haskell/" rel="tag">Haskell</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scala/" rel="tag">Scala</a></li></ul>
 
     </footer>
   </div>
@@ -112,19 +108,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/12/03/New-Beginning/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          New Beginning
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/12/21/%E9%9A%8F%E7%AC%94-0X00/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/01/09/Luogu-P3119/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">随笔#0X00</div>
+      <div class="article-nav-title">Luogu-P3119</div>
     </a>
   
 </nav>

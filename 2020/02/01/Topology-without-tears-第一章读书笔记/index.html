@@ -4,15 +4,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: DP | Outside</title>
+  <title>Topology without tears 第一章读书笔记 | Outside</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="somewhere outside the world">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Outside">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;tags&#x2F;DP&#x2F;">
+  <meta name="description" content="Topological Spaces">
+<meta name="keywords" content="Topology,读书笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Topology without tears 第一章读书笔记">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;01&#x2F;Topology-without-tears-%E7%AC%AC%E4%B8%80%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0&#x2F;">
 <meta property="og:site_name" content="Outside">
-<meta property="og:description" content="somewhere outside the world">
+<meta property="og:description" content="Topological Spaces">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-01-31T21:49:06.454Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Outside" type="application/atom+xml">
@@ -65,106 +67,98 @@
   </div>
 </header>
     <div class="outer">
-      <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/01/02/Luogu-P4832/" class="archive-article-date">
-  <time datetime="2020-01-02T07:29:32.000Z" itemprop="datePublished">Jan 2</time>
+      <section id="main"><article id="post-Topology-without-tears-第一章读书笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/02/01/Topology-without-tears-%E7%AC%AC%E4%B8%80%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time datetime="2020-01-31T20:53:45.000Z" itemprop="datePublished">2020-02-01</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/02/Luogu-P4832/">Luogu-P4832</a>
+    <h1 class="article-title" itemprop="name">
+      Topology without tears 第一章读书笔记
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
+    <div class="article-entry" itemprop="articleBody">
       
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/12/15/Luogu-P1941/" class="archive-article-date">
-  <time datetime="2019-12-15T09:40:41.000Z" itemprop="datePublished">Dec 15</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/15/Luogu-P1941/">Luogu-P1941</a>
-    </h1>
-  
+        <h1 id="Topological-Spaces"><a href="#Topological-Spaces" class="headerlink" title="Topological Spaces"></a>Topological Spaces</h1><a id="more"></a>
+<p>Here is series of reading notes for I reading the book “Toplogy without tears”.<br>And I’m so sorry about my poor English skill which caused u reading difficulties.</p>
+<!-- Before beginning I will tell u how I read this book, and what my notes will seem to be. -->
+<h2 id="1-1-Topology"><a href="#1-1-Topology" class="headerlink" title="1.1 Topology"></a>1.1 Topology</h2><p>So my first question is  what is the concept ‘Topology’ be.</p>
+<blockquote>
+<p>Definitions. Let X be a non-empty set. A set τ of subsets of X is said to be a topology on X if</p>
+<p>(i) $X$ and the empty set, $\emptyset$, belong to $\tau$ ,</p>
+<p>(ii) the union of any (finite or infinite) number of sets in $\tau$ belongs to $\tau$, and</p>
+<p>(iii) the intersection of any two sets in $\tau$ belongs to $\tau$. The pair $(X,\tau)$ is called a <strong>topological space</strong>.</p>
+</blockquote>
+<p>Here is a example</p>
+<p>Let $X$ = {a, b, c, d, e, f} and<br>$\tau_1$ = ${X,Ø,{a},{c,d},{a,c,d},{b,c,d,e,f}}$.</p>
+<p>Then $\tau_1$ is a topology on $X$ as it satisfies conditions (i), (ii) and (iii) of Definitions,and we can say that $(X,\tau_1)$ is a topological space.</p>
+<p>Now it’s time for some special definitions.</p>
+<blockquote>
+<p>Definitions. Let $X$ be any non-empty set and let $\tau$ be the collection of all subsets of $X$. Then $\tau$ is called the <strong>discrete topology</strong> on the set $X$. The topological space $(X,\tau)$ is called a <strong>discrete space</strong>.</p>
+</blockquote>
+<!-- How to prove that $\tau = P(X)$ is a topology on $X$ ?
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/12/05/Luogu-P5322/" class="archive-article-date">
-  <time datetime="2019-12-04T16:04:13.000Z" itemprop="datePublished">Dec 5</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/05/Luogu-P5322/">Luogu-P5322</a>
-    </h1>
-  
+Clearly we have $A,\emptyset \in \tau$
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/12/03/Luogu-P2979/" class="archive-article-date">
-  <time datetime="2019-12-03T05:03:58.000Z" itemprop="datePublished">Dec 3</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/03/Luogu-P2979/">Luogu-P2979</a>
-    </h1>
-  
+To Prove (ii)
 
-    </header>
+Let $A, B \in X$, for all $A, B$,
+
+we have $A,B \subseteq X$ and then $A \cup B \in P(X)$
+
+Likely, it's eazy to prove $A \cap B \in \tau$ -->
+<blockquote>
+<p>Definitions. Let $X$ be any non-empty set and $\tau$ = $\{X, \emptyset\}$. Then $\tau$ is called the <strong>indiscrete topology</strong> and $(X,\tau)$ is said to be an <strong>indiscrete space</strong>.</p>
+</blockquote>
+<!-- This is very eazy to prove. -->
+<blockquote>
+<p>Proposition. If $(X,\tau)$ is a topological space such that, for every $x \in X$, the singleton set $\{x\}$ is in $\tau$ , then $\tau$ is the discrete topology.</p>
+</blockquote>
+<p>Prove this proposition is not hard,so I last it for u.(ps: use mathematical induction)</p>
+<blockquote>
+<p>Definitions. </p>
+<p>$\tau_1$ consists of $\mathbb{N}$,$\emptyset$, and every set $\{1,2,…,n\}$, for n any positive integer. $\tau_1$ called the <strong>initial segment topology</strong>.</p>
+<p>$\tau_2$ consists of $\mathbb{N}$,$\emptyset$, and every set $\{n,n+1,…\}$, for n any positive integer. $\tau_2$ is called the <strong>final segment topology</strong>.</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://yoursite.com/2020/02/01/Topology-without-tears-%E7%AC%AC%E4%B8%80%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" data-id="ck62pa4qr00065jni8iz54299" class="article-share-link">Share</a>
+      
+
+      
+
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Topology/" rel="tag">Topology</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/01/09/Luogu-P3119/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Luogu-P3119</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 </section>
       

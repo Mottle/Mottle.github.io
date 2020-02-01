@@ -125,7 +125,7 @@ body,
 }
 body {
   background: #eee;
-  font: 14px/1.6em "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: 16px/1.6em "等距更纱黑体 SC", "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
   -webkit-text-size-adjust: 100%;
 }
 .outer {
@@ -225,7 +225,7 @@ body {
 .widget h6 {
   font-weight: bold;
   color: #000;
-  font-family: "Droid Serif", Georgia, Serif;
+  font-family: "等距更纱黑体 SC", "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .article-entry h1 a,
 .widget h1 a,
@@ -478,9 +478,9 @@ body {
 .nav-icon {
   font-family: FontAwesome;
   text-align: center;
-  font-size: 14px;
-  width: 14px;
-  height: 14px;
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
   padding: 20px 15px;
   position: relative;
   cursor: pointer;
@@ -558,7 +558,7 @@ body {
   background: none;
   color: #000;
   width: 100%;
-  font: 13px "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: 13px "等距更纱黑体 SC", "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
   outline: none;
 }
 .search-form-input::-webkit-search-results-decoration,
@@ -704,16 +704,16 @@ a.article-title:hover {
   padding: 10px 0;
 }
 .article-entry blockquote {
-  font-family: "Droid Serif", Georgia, Serif;
+  font-family: "等距更纱黑体 SC", "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin: 1.6em 0;
   padding: 0 0.8em;
   border-left: 4px solid #ddd;
   color: #777;
 }
 .article-entry blockquote footer {
-  font-size: 14px;
+  font-size: 16px;
   margin: 1.6em 0;
-  font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "等距更纱黑体 SC", "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .article-entry blockquote footer cite:before {
   content: "—";
@@ -920,7 +920,7 @@ a.article-title:hover {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  font: 14px "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: 14px "等距更纱黑体 SC", "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 0 15px;
   color: #000;
   outline: none;
@@ -1243,7 +1243,7 @@ a.article-title:hover {
   border-width: 1px 0;
   overflow: auto;
   color: #f8f8f2;
-  line-height: 22.400000000000002px;
+  line-height: 25.6px;
 }
 .article-entry .highlight .gutter pre,
 .article-entry .gist .gist-file .gist-data .line-numbers {
@@ -1252,7 +1252,7 @@ a.article-title:hover {
 }
 .article-entry pre,
 .article-entry code {
-  font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
+  font-family: "Fira Code", Consolas, Monaco, Menlo, Consolas, monospace;
 }
 .article-entry code {
   background: #f0f0f0;
@@ -1304,7 +1304,7 @@ a.article-title:hover {
   padding-right: 20px;
 }
 .article-entry .highlight .line {
-  height: 22.400000000000002px;
+  height: 25.6px;
 }
 .article-entry .gist {
   margin: 0 -20px;
@@ -1316,7 +1316,7 @@ a.article-title:hover {
 }
 .article-entry .gist .gist-file {
   border: none;
-  font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
+  font-family: "Fira Code", Consolas, Monaco, Menlo, Consolas, monospace;
   margin: 0;
 }
 .article-entry .gist .gist-file .gist-data {
@@ -1339,7 +1339,7 @@ a.article-title:hover {
 .article-entry .gist .gist-file .gist-meta {
   background: #272822;
   color: #75715e;
-  font: 0.85em "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: 0.85em "等距更纱黑体 SC", "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-shadow: 0 0;
   padding: 0;
   margin-top: 1em;

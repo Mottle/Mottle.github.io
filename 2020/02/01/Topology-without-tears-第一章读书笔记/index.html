@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Outside">
 <meta property="og:description" content="Topological Spaces">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-01-31T21:49:06.454Z">
+<meta property="og:updated_time" content="2020-02-02T19:12:10.404Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Outside" type="application/atom+xml">
@@ -94,48 +94,45 @@
 <!-- Before beginning I will tell u how I read this book, and what my notes will seem to be. -->
 <h2 id="1-1-Topology"><a href="#1-1-Topology" class="headerlink" title="1.1 Topology"></a>1.1 Topology</h2><p>So my first question is  what is the concept ‘Topology’ be.</p>
 <blockquote>
-<p>Definitions. Let X be a non-empty set. A set τ of subsets of X is said to be a topology on X if</p>
+<p>Definitions 1.1.1 </p>
+<p>Let X be a non-empty set. A set τ of subsets of X is said to be a topology on X if</p>
 <p>(i) $X$ and the empty set, $\emptyset$, belong to $\tau$ ,</p>
 <p>(ii) the union of any (finite or infinite) number of sets in $\tau$ belongs to $\tau$, and</p>
 <p>(iii) the intersection of any two sets in $\tau$ belongs to $\tau$. The pair $(X,\tau)$ is called a <strong>topological space</strong>.</p>
 </blockquote>
 <p>Here is a example</p>
-<p>Let $X$ = {a, b, c, d, e, f} and<br>$\tau_1$ = ${X,Ø,{a},{c,d},{a,c,d},{b,c,d,e,f}}$.</p>
-<p>Then $\tau_1$ is a topology on $X$ as it satisfies conditions (i), (ii) and (iii) of Definitions,and we can say that $(X,\tau_1)$ is a topological space.</p>
+<p>Let $X$ = {a, b, c, d, e, f} and<br>$\tau_1$ = {X,Ø,{a},{c,d},{a,c,d},{b,c,d,e,f}}.</p>
+<p>Then $\tau_1$ is a topology on $X$ as it satisfies conditions (i), (ii) and (iii) of Definitions 1.1.1,and we can say that $(X,\tau_1)$ is a topological space.</p>
 <p>Now it’s time for some special definitions.</p>
 <blockquote>
-<p>Definitions. Let $X$ be any non-empty set and let $\tau$ be the collection of all subsets of $X$. Then $\tau$ is called the <strong>discrete topology</strong> on the set $X$. The topological space $(X,\tau)$ is called a <strong>discrete space</strong>.</p>
+<p>Definitions 1.1.2 </p>
+<p>Let $X$ be any non-empty set and let $\tau$ be the collection of all subsets of $X$. Then $\tau$ is called the <strong>discrete topology</strong> on the set $X$. The topological space $(X,\tau)$ is called a <strong>discrete space</strong>.</p>
 </blockquote>
-<!-- How to prove that $\tau = P(X)$ is a topology on $X$ ?
-
-Clearly we have $A,\emptyset \in \tau$
-
-To Prove (ii)
-
-Let $A, B \in X$, for all $A, B$,
-
-we have $A,B \subseteq X$ and then $A \cup B \in P(X)$
-
-Likely, it's eazy to prove $A \cap B \in \tau$ -->
+<p>We note that τ in Definitions 1.1.2 does satisfy the conditions of Definitions 1.1.1 and so is indeed a topology.</p>
+<p>Observe that the set $X$ in Definitions 1.1.2 can be any non-empty set. So there is an infinite number of discrete spaces – one for each set $X$.</p>
 <blockquote>
-<p>Definitions. Let $X$ be any non-empty set and $\tau$ = $\{X, \emptyset\}$. Then $\tau$ is called the <strong>indiscrete topology</strong> and $(X,\tau)$ is said to be an <strong>indiscrete space</strong>.</p>
+<p>Definitions 1.1.3 </p>
+<p>Let $X$ be any non-empty set and $\tau$ = $\{X, \emptyset\}$. Then $\tau$ is called the <strong>indiscrete topology</strong> and $(X,\tau)$ is said to be an <strong>indiscrete space</strong>.</p>
 </blockquote>
-<!-- This is very eazy to prove. -->
+<p>Once again we have to check that $\tau$ satisfies the conditions of 1.1.1 and so is indeed a topology.</p>
+<p>We observe again that the set $X$ in Definitions 1.1.3 can be any non-empty set. So there is an infinite number of indiscrete spaces – one for each set $X$.</p>
 <blockquote>
-<p>Proposition. If $(X,\tau)$ is a topological space such that, for every $x \in X$, the singleton set $\{x\}$ is in $\tau$ , then $\tau$ is the discrete topology.</p>
-</blockquote>
-<p>Prove this proposition is not hard,so I last it for u.(ps: use mathematical induction)</p>
-<blockquote>
-<p>Definitions. </p>
+<p>Definitions 1.1.4 </p>
 <p>$\tau_1$ consists of $\mathbb{N}$,$\emptyset$, and every set $\{1,2,…,n\}$, for n any positive integer. $\tau_1$ called the <strong>initial segment topology</strong>.</p>
 <p>$\tau_2$ consists of $\mathbb{N}$,$\emptyset$, and every set $\{n,n+1,…\}$, for n any positive integer. $\tau_2$ is called the <strong>final segment topology</strong>.</p>
 </blockquote>
+<p>ez to prove they satisfy the conditions of Definitions 1.1.1.</p>
+<blockquote>
+<p>Proposition 1.1.5 </p>
+<p>If $(X,\tau)$ is a topological space such that, for every $x \in X$, the singleton set $\{x\}$ is in $\tau$ , then $\tau$ is the discrete topology.</p>
+</blockquote>
+<p>Prove this proposition is not hard,so u can try to prove that.(ps: use mathematical induction)</p>
 
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2020/02/01/Topology-without-tears-%E7%AC%AC%E4%B8%80%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" data-id="ck642qr6l00086gnidwpp2tcx" class="article-share-link">Share</a>
+        <a data-url="http://yoursite.com/2020/02/01/Topology-without-tears-%E7%AC%AC%E4%B8%80%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" data-id="ck65eko0t0009moni3b8u5u8u" class="article-share-link">Share</a>
       
 
       

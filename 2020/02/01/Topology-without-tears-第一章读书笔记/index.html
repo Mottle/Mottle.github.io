@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Outside">
 <meta property="og:description" content="Topological Spaces">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-02T19:12:10.404Z">
+<meta property="og:updated_time" content="2020-02-11T10:24:15.434Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Outside" type="application/atom+xml">
@@ -92,16 +92,15 @@
         <h1 id="Topological-Spaces"><a href="#Topological-Spaces" class="headerlink" title="Topological Spaces"></a>Topological Spaces</h1><a id="more"></a>
 <p>Here is series of reading notes for I reading the book “Toplogy without tears”.<br>And I’m so sorry about my poor English skill which caused u reading difficulties.</p>
 <!-- Before beginning I will tell u how I read this book, and what my notes will seem to be. -->
-<h2 id="1-1-Topology"><a href="#1-1-Topology" class="headerlink" title="1.1 Topology"></a>1.1 Topology</h2><p>So my first question is  what is the concept ‘Topology’ be.</p>
-<blockquote>
+<h2 id="1-1-Topology"><a href="#1-1-Topology" class="headerlink" title="1.1 Topology"></a>1.1 Topology</h2><blockquote>
 <p>Definitions 1.1.1 </p>
 <p>Let X be a non-empty set. A set τ of subsets of X is said to be a topology on X if</p>
 <p>(i) $X$ and the empty set, $\emptyset$, belong to $\tau$ ,</p>
 <p>(ii) the union of any (finite or infinite) number of sets in $\tau$ belongs to $\tau$, and</p>
 <p>(iii) the intersection of any two sets in $\tau$ belongs to $\tau$. The pair $(X,\tau)$ is called a <strong>topological space</strong>.</p>
 </blockquote>
-<p>Here is a example</p>
-<p>Let $X$ = {a, b, c, d, e, f} and<br>$\tau_1$ = {X,Ø,{a},{c,d},{a,c,d},{b,c,d,e,f}}.</p>
+<p>Here is an example</p>
+<p>Let $X$ = $\{a, b, c, d, e, f\}$ and<br>$\tau_1$ = $\{X, \emptyset, \{a\}, \{c,d\}, \{a,c,d\}, \{b,c,d,e,f\}\}$.</p>
 <p>Then $\tau_1$ is a topology on $X$ as it satisfies conditions (i), (ii) and (iii) of Definitions 1.1.1,and we can say that $(X,\tau_1)$ is a topological space.</p>
 <p>Now it’s time for some special definitions.</p>
 <blockquote>
@@ -127,12 +126,99 @@
 <p>If $(X,\tau)$ is a topological space such that, for every $x \in X$, the singleton set $\{x\}$ is in $\tau$ , then $\tau$ is the discrete topology.</p>
 </blockquote>
 <p>Prove this proposition is not hard,so u can try to prove that.(ps: use mathematical induction)</p>
+<h2 id="1-2-Open-Sets-Closed-Sets-and-“Clopen”-Sets"><a href="#1-2-Open-Sets-Closed-Sets-and-“Clopen”-Sets" class="headerlink" title="1.2 Open Sets,Closed Sets and “Clopen” Sets"></a>1.2 Open Sets,Closed Sets and “Clopen” Sets</h2><p>Rather than continually refer to “members of $\tau$ “, we find it more convenient to give such sets a name. We call them “open sets”. </p>
+<blockquote>
+<p>Definition 1.2.1</p>
+<p>Let $(X,\tau)$ be any topological space. Then the members of $\tau$ are said to be <strong>open sets</strong>.</p>
+</blockquote>
+<p>so we have</p>
+<blockquote>
+<p>Proposition 1.2.2  </p>
+<p>If $(X,\tau)$ is any topological space, then </p>
+<p>(i) $X$ and $\emptyset$ are open sets,</p>
+<p>(ii) the union of any (finite or infinite) number of open sets is an open set, and </p>
+<p>(iii) the intersection of any <strong>finite</strong> number of open sets is an open set.</p>
+</blockquote>
+<p>We shall also name the complements of open sets. They will be called “closed sets”.</p>
+<blockquote>
+<p>Definition 1.2.3 </p>
+<p>Let $(X,\tau)$ be a topological space. A subset S of X is said to be a closed set in $(X,\tau)$ if its complement in X, namely $X \backslash S$, is open in $(X,\tau)$.</p>
+</blockquote>
+<p>here is an example</p>
+<p>Let $X$ = $\{a, b, c, d, e, f\}$ and<br>$\tau_1$ = $\{X, \emptyset, \{a\}, \{c,d\}, \{a,c,d\}, \{b,c,d,e,f\}\}$.</p>
+<p>the closed sets are $\emptyset$, $X$, $\{b,c,d,e,f\}$, $\{a,b,e,f\}$, $\{b,e,f\}$ and $\{a\}$.</p>
+<p>If $(X,\tau)$ is a discrete space, then it is obvious that every subset of $X$ is a closed set. However in an indiscrete space, $(X, \tau)$, the only closed sets are $X$ and $\emptyset$.</p>
+<blockquote>
+<p>Proposition 1.2.4 </p>
+<p>If $(X,\tau)$ is any topological space, then </p>
+<p>(i) $\emptyset$ and $X$ are closed sets,</p>
+<p>(ii) the intersection of any (finite or infinite) number of closed sets is a closed set and</p>
+<p>(iii) the union of any finite number of closed sets is a closed set.</p>
+</blockquote>
+<p>Warning. The names “open” and “closed” often lead newcomers to the world of topology into error. Despite the names, some open sets are also closed sets! Moreover, <strong>some sets are neither open sets nor closed sets!</strong></p>
+<p>Give an example</p>
+<p>Let $X$ = $\{a, b, c, d, e, f\}$ and<br>$\tau_1$ = $\{X, \emptyset, \{a\}, \{c,d\}, \{a,c,d\}, \{b,c,d,e,f\}\}$.</p>
+<p>we see that</p>
+<p>(i) the set $\{a\}$ is both open and closed;</p>
+<p>(ii) the set $\{b, c\}$ is neither open nor closed;</p>
+<p>(iii) the set $\{c, d\}$ is open but not closed;</p>
+<p>(iv) the set $\{a,b,e,f\}$ is closed but not open.</p>
+<p>In a discrete space every set is both open and closed, while in an indiscrete space<br>$(X,\tau)$, all subsets of $X$ except $X$ and $\emptyset$ are neither open nor closed.</p>
+<p>To remind you that sets can be both open and closed we introduce the following definition.</p>
+<blockquote>
+<p>Definition 1.2.5</p>
+<p>A subset $S$ of a topological space $(X,\tau)$ is said to be clopen if it is both open and closed in $(X,\tau)$.</p>
+</blockquote>
+<p>In every topological space $(X, \tau)$ both $X$ and $\emptyset$ are clopen. </p>
+<p>In a discrete space all subsets of $X$ are clopen.</p>
+<p>In an indiscrete space the only clopen subsets are $X$ and $\emptyset$.</p>
+<h2 id="1-3-The-Finite-Closed-Topology"><a href="#1-3-The-Finite-Closed-Topology" class="headerlink" title="1.3 The Finite-Closed Topology"></a>1.3 The Finite-Closed Topology</h2><p>It is usual to define a topology on a set by stating which sets are open. </p>
+<p>However, sometimes it is more natural to describe the topology by saying which sets are closed.</p>
+<blockquote>
+<p>Definition 1.3.1 </p>
+<p>Let $X$ be any non-empty set. A topology $\tau$ on $X$ is called the <strong>finite-closed topology</strong> or the <strong>cofinite topology</strong> if the closed subsets of $X$ are $X$ and all finite subsets of $X$;</p>
+<p>that is, the open sets are $\emptyset$ and all subsets of $X$ which have finite complements.</p>
+</blockquote>
+<p>example</p>
+<p>If $\mathbb{N}$ is the set of all positive integers, then sets such as </p>
+<p>$\{1\}$, $\{5,6,7\}$, $\{2,4,6,8\}$</p>
+<p>are finite and hence closed in the finite-closed topology. Thus their complements</p>
+<p>$\{2,3,4,5,…\}$, $\{1,2,3,4,8,9,10,…\}$, $\{1,3,5,7,9,10,11,…\}$</p>
+<p>are open sets in the finite-closed topology.</p>
+<blockquote>
+<p>Definitions 1.3.2 Let $f$ be a function from a set $X$ into a set $Y$ .</p>
+<p>(i) The function $f$ is said to be one-to-one or <strong>injective</strong> if $f(x_1) = f(x_2)$ implies $x_1 = x_2$, for $x_1,x_2 \in X$;</p>
+<p>(ii) The function $f$ is said to be onto or <strong>surjective</strong> if for each $y \in Y$ there exists an x∈X such that $f(x)=y$;</p>
+<p>(iii) The function $f$ is said to be <strong>bijective</strong> if it is both one-to-one and onto.</p>
+<p>Definitions 1.3.3 </p>
+<p>Let $f$ be a function from a set $X$ into a set $Y$. The function $f$ is said to have an <strong>inverse</strong> if there exists a function g of $Y$ into $X$ such that $g(f(x))=x$, for all $x \in X$ and $f(g(y))=y$, for all $y \in Y$. The function $g$ is called an <strong>inverse function</strong> of $f$.</p>
+<p>Proposition 1.3.4 </p>
+<p>Let $f$ be a function from a set $X$ into a set $Y$.</p>
+<p>(i) The function $f$ has an inverse if and only if $f$ is bijective.</p>
+<p>(ii) Let $g_1$ and $g_2$ be functions from $Y$ into $X$. If $g_1$ and $g_2$ are both inverse functions of $f$, then $g_1 = g_2$; that is, $g_1(y) = g_2(y)$, for all $y \in Y$ .</p>
+<p>(iii) Let g be a function from $Y$ into $X$. Then $g$ is an inverse function of $f$ if and only if $f$ is an inverse function of $g$.</p>
+</blockquote>
+<p>All functions <strong>map one point to one point</strong>. Indeed this is part of the definition of a function.</p>
+<p>A <strong>one-to-one function</strong> is a function that <strong>maps different points to different points</strong>.</p>
+<blockquote>
+<p>Definition 1.3.5 </p>
+<p>Let $f$ be a function from a set $X$ into a set $Y$. If S is any subset of $Y$ , then the set $f^{-1}(S)$ is defined by</p>
+<p>$f^{-1}(S)=\{x:x \in X<del>and</del>f(x) \in S\}$</p>
+<p>The subset $f^{-1}(S)$ of $X$ is said to be the inverse image of $S$.</p>
+</blockquote>
+<p>Note that an inverse function of $f : X \to Y$ exists if and only if $f$ is bijective. But the inverse image of any subset of $Y$ exists even if $f$ is neither one-to-one nor onto.</p>
+<blockquote>
+<p>Definition 1.3.6</p>
+<p>A topological space $(X,\tau)$ is said to be a <strong>T1-space</strong> if every singleton set $\{x\}$ is closed in $(X,\tau)$. Show that precisely two of the following nine topological spaces are <strong>T1-spaces</strong>.</p>
+<p>Definition 1.3.7</p>
+<p>A topological space $(X,\tau)$ is said to be a <strong>T0-space</strong> if for each pair of distinct points $a$, $b$ in $X$.</p>
+</blockquote>
 
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2020/02/01/Topology-without-tears-%E7%AC%AC%E4%B8%80%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" data-id="ck65eko0t0009moni3b8u5u8u" class="article-share-link">Share</a>
+        <a data-url="http://yoursite.com/2020/02/01/Topology-without-tears-%E7%AC%AC%E4%B8%80%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" data-id="ck6hqpt1z0008mlni85frcih9" class="article-share-link">Share</a>
       
 
       

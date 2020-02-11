@@ -6,15 +6,15 @@
   
   <title>Luogu-P3119 | Outside</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题面 很有意思的一道题  约翰有n块草场，编号1到n，这些草场由若干条单行道相连。奶牛贝西是美味牧草的鉴赏家，她想到达尽可能多的草场&amp;gt;去品尝牧草。 贝西总是从1号草场出发，最后回到1号草场。她想经过尽可能多的草场，贝西在通一个草场只吃一次草，所以一个草场&amp;gt;可以经过多次。因为草场是单行道连接，这给贝西的品鉴工作带来了很大的不便，贝西想偷偷逆向行走一次，但最多只∂能有一次逆行。问，贝西最多">
+  <meta name="description" content="题面 很有意思的一道题  约翰有n块草场，编号1到n，这些草场由若干条单行道相连。奶牛贝西是美味牧草的鉴赏家，她想到达尽可能多的草场&amp;gt;去品尝牧草。 贝西总是从1号草场出发，最后回到1号草场。她想经过尽可能多的草场，贝西在通一个草场只吃一次草，所以一个草场&amp;gt;可以经过多次。因为草场是单行道连接，这给贝西的品鉴工作带来了很大的不便，贝西想偷偷逆向行走一次，但最多只能有一次逆行。问，贝西最多能">
 <meta name="keywords" content="ACM,图论,强连通分量&#x2F;缩点">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Luogu-P3119">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;09&#x2F;Luogu-P3119&#x2F;">
 <meta property="og:site_name" content="Outside">
-<meta property="og:description" content="题面 很有意思的一道题  约翰有n块草场，编号1到n，这些草场由若干条单行道相连。奶牛贝西是美味牧草的鉴赏家，她想到达尽可能多的草场&amp;gt;去品尝牧草。 贝西总是从1号草场出发，最后回到1号草场。她想经过尽可能多的草场，贝西在通一个草场只吃一次草，所以一个草场&amp;gt;可以经过多次。因为草场是单行道连接，这给贝西的品鉴工作带来了很大的不便，贝西想偷偷逆向行走一次，但最多只∂能有一次逆行。问，贝西最多">
+<meta property="og:description" content="题面 很有意思的一道题  约翰有n块草场，编号1到n，这些草场由若干条单行道相连。奶牛贝西是美味牧草的鉴赏家，她想到达尽可能多的草场&amp;gt;去品尝牧草。 贝西总是从1号草场出发，最后回到1号草场。她想经过尽可能多的草场，贝西在通一个草场只吃一次草，所以一个草场&amp;gt;可以经过多次。因为草场是单行道连接，这给贝西的品鉴工作带来了很大的不便，贝西想偷偷逆向行走一次，但最多只能有一次逆行。问，贝西最多能">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-01-09T16:33:54.588Z">
+<meta property="og:updated_time" content="2020-02-11T09:24:05.635Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Outside" type="application/atom+xml">
@@ -93,7 +93,7 @@
 <p>很有意思的一道题</p>
 <blockquote>
 <p>约翰有n块草场，编号1到n，这些草场由若干条单行道相连。奶牛贝西是美味牧草的鉴赏家，她想到达尽可能多的草场&gt;去品尝牧草。</p>
-<p>贝西总是从1号草场出发，最后回到1号草场。她想经过尽可能多的草场，贝西在通一个草场只吃一次草，所以一个草场&gt;可以经过多次。因为草场是单行道连接，这给贝西的品鉴工作带来了很大的不便，贝西想偷偷逆向行走一次，但最多只∂能有一次逆行。问，贝西最多能吃到多少个草场的牧草。<br><a id="more"></a><br>看到要尽量多的通过草场，且草场可以重复通过但不重复计数可以想到，在一个联通快内部的点都要走到（只有这样才能使得答案尽量的大）</p>
+<p>贝西总是从1号草场出发，最后回到1号草场。她想经过尽可能多的草场，贝西在通一个草场只吃一次草，所以一个草场&gt;可以经过多次。因为草场是单行道连接，这给贝西的品鉴工作带来了很大的不便，贝西想偷偷逆向行走一次，但最多只能有一次逆行。问，贝西最多能吃到多少个草场的牧草。<br><a id="more"></a><br>看到要尽量多的通过草场，且草场可以重复通过但不重复计数可以想到，在一个联通快内部的点都要走到（只有这样才能使得答案尽量的大）</p>
 </blockquote>
 <p>那么我们找出所有的连通块然后缩点，问题就变成了在带点权DAG上找到一种路线使得在允许有一次走反向边且回到原点的最大路径（或者这么说，把任意一条边变成双向边使得包含点1的环尽可能的大）</p>
 <p>对于缩点后的DAG</p>
@@ -104,7 +104,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2020/01/09/Luogu-P3119/" data-id="ck65eko0k0004moni23x093nc" class="article-share-link">Share</a>
+        <a data-url="http://yoursite.com/2020/01/09/Luogu-P3119/" data-id="ck6hqpt1w0005mlniatjkdo1s" class="article-share-link">Share</a>
       
 
       

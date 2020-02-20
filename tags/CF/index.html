@@ -4,17 +4,15 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Topology without tears 第二章读书笔记 | Outside</title>
+  <title>Tag: CF | Outside</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="The Euclidean Topology">
-<meta name="keywords" content="Topology,读书笔记">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Topology without tears 第二章读书笔记">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;14&#x2F;Topology-without-tears-%E7%AC%AC%E4%BA%8C%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0&#x2F;">
+  <meta name="description" content="somewhere outside the world">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Outside">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;tags&#x2F;CF&#x2F;">
 <meta property="og:site_name" content="Outside">
-<meta property="og:description" content="The Euclidean Topology">
+<meta property="og:description" content="somewhere outside the world">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-14T10:24:45.324Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Outside" type="application/atom+xml">
@@ -67,108 +65,39 @@
   </div>
 </header>
     <div class="outer">
-      <section id="main"><article id="post-Topology-without-tears-第二章读书笔记" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/02/14/Topology-without-tears-%E7%AC%AC%E4%BA%8C%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="article-date">
-  <time datetime="2020-02-14T09:20:56.000Z" itemprop="datePublished">2020-02-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+      <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      Topology without tears 第二章读书笔记
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2020/02/20/CF1296D/" class="archive-article-date">
+  <time datetime="2020-02-20T11:58:51.000Z" itemprop="datePublished">Feb 20</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/02/20/CF1296D/">CF1296D</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="The-Euclidean-Topology"><a href="#The-Euclidean-Topology" class="headerlink" title="The Euclidean Topology"></a>The Euclidean Topology</h1><a id="more"></a>
-<h2 id="2-1-The-Euclidean-Topology-on-mathbb-R"><a href="#2-1-The-Euclidean-Topology-on-mathbb-R" class="headerlink" title="2.1 The Euclidean Topology on $\mathbb{R}$"></a>2.1 The Euclidean Topology on $\mathbb{R}$</h2><blockquote>
-<p>Definition 2.1.1</p>
-<p>A subset $S$ of $\mathbb{R}$ is said to be open in the euclidean topology on $\mathbb{R}$ if it has the following property:</p>
-<p>(∗) For each $x \in S$, there exist $a,b \in \mathbb{R}$, with $a &lt; b$, such that $x \in (a,b) \subseteq S$.</p>
-</blockquote>
-<p>Whenever we refer to the topological space $\mathbb{R}$ without specifying the topology, we mean $\mathbb{R}$ with the euclidean topology.</p>
-<p>Not all open sets in $\mathbb{R}$ are intervals</p>
-<h2 id="2-2-Basis-for-a-Topology"><a href="#2-2-Basis-for-a-Topology" class="headerlink" title="2.2 Basis for a Topology"></a>2.2 Basis for a Topology</h2><blockquote>
-<p>Proposition 2.2.1</p>
-<p>A subset $S$ of $\mathbb{R}$ is open if and only if it is a union of <strong>open</strong> intervals.</p>
-</blockquote>
-<p>That’s very clear.</p>
-<blockquote>
-<p>Definition 2.2.2</p>
-<p>Let $(X, \tau)$ be a topological space. A collection $\mathcal{B}$ of open subsets of $X$ is said to be a basis for the topology $\tau$ if every open set is a union of members of $\mathcal{B}$.</p>
-</blockquote>
-<p>If $\mathcal{B}$ is a basis for a topology $\tau$ on a set $X$ then a subset $U$ of $X$ is in $\tau$ if and only if it is a union of members of $\mathcal{B}$. </p>
-<p>Example. </p>
-<script type="math/tex; mode=display">\mathcal{B} = \{(a,b) : a,b \in R,a < b\}</script><p>Then $\mathcal{B}$ is a basis for the euclidean topology on $\mathbb{R}$</p>
-<p>Remark. Observe that if $(X,\tau)$ is a topological space then $\mathcal{B}$ = $\tau$ is a basis for the topology $\tau$. So, for example, the set of all subsets of $X$ is a basis for the discrete topology on $X$.</p>
-<p>We see, therefore, that there can be many different bases for the same topology. Indeed if $\mathcal{B}$ is a basis for a topology $\tau$ on a set $X$ and $\mathcal{B}_1$ is a collection of subsets of $X$ such that $\mathcal{B} \subseteq \mathcal{B}_1 \subseteq \tau$, then $\mathcal{B}_1$ is also a basis for $\tau$.</p>
-<blockquote>
-<p>Proposition 2.2.3</p>
-<p>Let $X$ be a non-empty set and let $\mathcal{B}$ be a collection of subsets of $X$. Then $\mathcal{B}$ is a  basis for a topology on $X$ if and only if $\mathcal{B}$ has the following properties:</p>
-<p>(a) $X= \bigcup_{B \in \mathcal{B}} B$</p>
-<p>(b) for any $B_1, B_2 \in \mathcal{B}$, the set $B_1 \cap B_2$ is a union of members of $\mathcal{B}$.</p>
-</blockquote>
-<h2 id="2-3-Basis-for-a-Given-Topology"><a href="#2-3-Basis-for-a-Given-Topology" class="headerlink" title="2.3 Basis for a Given Topology"></a>2.3 Basis for a Given Topology</h2><p>Proposition 2.2.3 told us under what conditions a collection $\mathcal{B}$ of subsets of a set $X$ is a basis for some topology on $X$. However sometimes we are given a topology $\tau$ on $X$ and we want to know whether $\mathcal{B}$ is a basis for this specific topology $\tau$. To verify that $\mathcal{B}$ is a basis for $\tau$ we could simply apply Definition 2.2.2 and show that every member of $\tau$ is a union of members of $\mathcal{B}$. However, Proposition 2.3.1 provides us with an alternative method.</p>
-<blockquote>
-<p>Proposition 2.3.1</p>
-<p>Let $(X,\tau)$ be a topological space. A family $\mathcal{B}$ of open subsets of $X$ is a basis for $\tau$ if and only if for any point $x$ belonging to any open set $U$, there is a $B \in \mathcal{B}$ such that $x \in B \subseteq U$.</p>
-<p>Proposition 2.3.2</p>
-<p>Let $\mathcal{B}$ be a basis for a topology $\tau$ on a set $X$. Then a subset $U$ of $X$ is open if and only if for each $x \in U$ there exists a $B \in \mathcal{B}$ such that $x \in B \subseteq U$.</p>
-</blockquote>
-<p>We have seen that a topology can have many different bases. The next proposition tells us when two bases $\mathcal{B}_1$ and $\mathcal{B}_2$ on the set $X$ define the same topology.</p>
-<blockquote>
-<p>Proposition 2.3.3</p>
-<p>Let $\mathcal{B}_1$ and $\mathcal{B}_2$ be bases for topologies $\tau_1$ and $\tau_2$, respectively, on a non-empty set $X$. Then $\tau_1 = \tau_2$ if and only if</p>
-<p>(i) for each $B \in \mathcal{B}_1$ and each $x \in B$,there exists a $B^{‘} \in \mathcal{B}_2$ such that $x \in B^{‘} \subseteq \mathcal{B}$, and</p>
-<p>(ii) for each $B \in \mathcal{B}_2$ and each $x \in B$, there exists a $B^{‘} \in \mathcal{B}_1$ such that $x \in B^{‘} \subseteq \mathcal{B}$.</p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://yoursite.com/2020/02/14/Topology-without-tears-%E7%AC%AC%E4%BA%8C%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" data-id="ck6upa8cd000czrni4ic49av1" class="article-share-link">Share</a>
-      
-
-      
-
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Topology/" rel="tag">Topology</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li></ul>
-
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2020/02/20/CF1296D/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          CF1296D
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2020/02/01/Topology-without-tears-%E7%AC%AC%E4%B8%80%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Topology without tears 第一章读书笔记</div>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
 
 </section>
       

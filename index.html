@@ -67,6 +67,67 @@
     <div class="outer">
       <section id="main">
   
+    <article id="post-kruskal重构树从ac到tle-不是" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/14/kruskal%E9%87%8D%E6%9E%84%E6%A0%91%E4%BB%8Eac%E5%88%B0tle-%E4%B8%8D%E6%98%AF/" class="article-date">
+  <time datetime="2020-04-13T16:01:06.000Z" itemprop="datePublished">2020-04-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/14/kruskal%E9%87%8D%E6%9E%84%E6%A0%91%E4%BB%8Eac%E5%88%B0tle-%E4%B8%8D%E6%98%AF/">kruskal重构树从ac到tle(不是)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天写到<a href="https://www.luogu.com.cn/problem/P1967" target="_blank" rel="noopener">货车运输</a>这题时。本想着拿倍增lca<del>乱搞</del>,结果在题解区发现了神奇的<strong>kruskal重构树</strong>觉得很有意思，<del>来水一篇文章</del>。</p>
+<p>话不多说，先说书kruskal重构树到底是拿来干嘛的。</p>
+<p>假定给你一张边权连通图(不连通其实也可以，这个等下再说)，想要知道从图中u出发到v的所有<strong>简单路径</strong>中的最小边权的最大值是多少(或者反过来求最大边权的最小值)</p>
+<p>举个例子免得把你绕晕了<br><img src="https://s1.ax1x.com/2020/04/14/Gvzizd.md.png" alt=""></p>
+<p>比如这张无向图中1，5两点的所有路径中最小权值的最大值就是4，而1，5所有路径的最大权值的最小值就是7。</p>
+<p>解决此问题有很多种方法比如树链剖分。当然这里讲的kurskal也是一种方法，而且更为简单。</p>
+<p>kruskal算法你作为一种简单高效($O(nlgn)$)的求MST算法相信大家都会。</p>
+<p>kruskal重构树则是在kruskal算法的基础上进行一些修改实现的。</p>
+<p>接下来来说一下kruskal重构树的具体实现。</p>
+<p>kruskal重构树的构造方法就是在利用kruskal算法求MST的同时把选出来的边作为一个新的节点连接这条边在原图中连接的两点的子树的根，把其原有的边权转化为新构成的点的点权，并把此点(刚刚新形成的点)作为新的根，不断重复这个过程直到所有点都被加入，则kruskal重构树构造完毕。可以比较容易的发现，原图的点全部都是kruskal重构树的叶子节点。而假设你要求u，v所有简单路径边权最大值得最小值，只需要求$lca(u, v)$的点权就得到了答案。(求最小边权最大则求最小生成树，反之求最大生成树)</p>
+<p>先说明一下kruskal重构树的性质</p>
+<pre><code>(1)原图中每个点都是kruskal重构树的一个叶子节点
+(2)kruskal重构树是二叉树
+(3)kruskal重构树构成二叉堆
+(4)kruskal重构树共有 2n - 1个节点
+</code></pre><p>比如上图的kruskal重构树就是</p>
+<p><img src="https://s1.ax1x.com/2020/04/14/GxS0N8.md.png" alt=""></p>
+<p>还需要提一下的就是，对于非连通图，求出的是kruskal重构森林，每一棵树代表着那一个连通分量的kruskal重构树。</p>
+<p>废话不多说 上代码</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">auto buildKT(int n) -&gt; int &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">//初始化并查集，用于判断每个节点属于哪一个子树</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">2</span> * n ; ++i) parent[i] = i;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">int</span> id = n;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    sort(edges.begin(), edges.end(), [](Edge u, Edge v)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">return</span> u.w &gt; v.w;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;&amp;e : edges) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">int</span> u = find(e.f);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">int</span> v = find(e.t);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span>(u == v) <span class="keyword">continue</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        parent[u] = parent[v] = ++id;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        d[id] = e.w;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        <span class="comment">//vector邻接表存图</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        E[id].push_back(u);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">        E[id].push_back(v);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">        E[u].push_back(id);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">        E[v].push_back(id);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">//最后一个节点的id</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">//此处有点多余，最后id一定为2n - 1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> id;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://yoursite.com/2020/04/14/kruskal%E9%87%8D%E6%9E%84%E6%A0%91%E4%BB%8Eac%E5%88%B0tle-%E4%B8%8D%E6%98%AF/" data-id="ck8yq9zmo000euvnieqcbhtez" class="article-share-link">Share</a>
+      
+
+      
+
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ACM/" rel="tag">ACM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%BE%E8%AE%BA/" rel="tag">图论</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-CF1296D" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/02/20/CF1296D/" class="article-date">
@@ -102,7 +163,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2020/02/20/CF1296D/" data-id="ck6upa8br0000zrni7nrac9c5" class="article-share-link">Share</a>
+        <a data-url="http://yoursite.com/2020/02/20/CF1296D/" data-id="ck8yq9zm70002uvni8blo2y9a" class="article-share-link">Share</a>
       
 
       
@@ -149,7 +210,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2020/02/14/Topology-without-tears-%E7%AC%AC%E4%BA%8C%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" data-id="ck6upa8cd000czrni4ic49av1" class="article-share-link">Share</a>
+        <a data-url="http://yoursite.com/2020/02/14/Topology-without-tears-%E7%AC%AC%E4%BA%8C%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" data-id="ck8yq9zmn000cuvni2427h4yw" class="article-share-link">Share</a>
       
 
       
@@ -196,7 +257,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2020/02/01/Topology-without-tears-%E7%AC%AC%E4%B8%80%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" data-id="ck6upa8ca0009zrni3badf74v" class="article-share-link">Share</a>
+        <a data-url="http://yoursite.com/2020/02/01/Topology-without-tears-%E7%AC%AC%E4%B8%80%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" data-id="ck8yq9zmj0009uvniauir6iah" class="article-share-link">Share</a>
       
 
       
@@ -247,7 +308,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2020/01/09/Luogu-P3119/" data-id="ck6upa8c50005zrnihl890f3e" class="article-share-link">Share</a>
+        <a data-url="http://yoursite.com/2020/01/09/Luogu-P3119/" data-id="ck8yq9zmf0006uvni1se9bu3a" class="article-share-link">Share</a>
       
 
       
@@ -295,7 +356,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2020/01/02/Luogu-P4832/" data-id="ck6upa8c70006zrni27g6bz4p" class="article-share-link">Share</a>
+        <a data-url="http://yoursite.com/2020/01/02/Luogu-P4832/" data-id="ck8yq9zmh0008uvni046saj9l" class="article-share-link">Share</a>
       
 
       
@@ -343,7 +404,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2019/12/15/Luogu-P1941/" data-id="ck6upa8by0002zrni619maoza" class="article-share-link">Share</a>
+        <a data-url="http://yoursite.com/2019/12/15/Luogu-P1941/" data-id="ck8yq9zm30001uvni0jp99s9b" class="article-share-link">Share</a>
       
 
       
@@ -396,7 +457,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2019/12/05/Luogu-P5322/" data-id="ck6upa8c90008zrni5aup2uuy" class="article-share-link">Share</a>
+        <a data-url="http://yoursite.com/2019/12/05/Luogu-P5322/" data-id="ck8yq9zmc0004uvni81cfh1wy" class="article-share-link">Share</a>
       
 
       
@@ -445,7 +506,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2019/12/03/Luogu-P2979/" data-id="ck6upa8c30004zrni0n848nf9" class="article-share-link">Share</a>
+        <a data-url="http://yoursite.com/2019/12/03/Luogu-P2979/" data-id="ck8yq9zme0005uvni9gcz6s4y" class="article-share-link">Share</a>
       
 
       
@@ -488,61 +549,13 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2019/12/03/New-Beginning/" data-id="ck6upa8cc000bzrni6cupetgi" class="article-share-link">Share</a>
+        <a data-url="http://yoursite.com/2019/12/03/New-Beginning/" data-id="ck8yq9zmq000huvni2dgzdogw" class="article-share-link">Share</a>
       
 
       
 
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9D%82%E8%B0%88/" rel="tag">杂谈</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-随笔-0X01" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/12/03/%E9%9A%8F%E7%AC%94-0X01/" class="article-date">
-  <time datetime="2017-12-03T14:19:00.000Z" itemprop="datePublished">2017-12-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/03/%E9%9A%8F%E7%AC%94-0X01/">随笔-0X01</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="我曾在满天烟花中逃离"><a href="#我曾在满天烟花中逃离" class="headerlink" title="我曾在满天烟花中逃离"></a>我曾在满天烟花中逃离</h1><!-- ![](http://p0d8bd6j2.bkt.clouddn.com/17-12-3/37071352.jpg) -->
-<p>&emsp;&emsp;昨天去影院看了传的很火的《烟花》。之前听说《烟花》评分并不太高，我看了以后觉得《烟花》在很多方面确实是不如君名，然而这并不是说《烟花》就一无是处，虽然画面稍稍有些欠佳，后半段的3D特效略迷，剧情跳转太突然以外，整体效果还是不错，让人留有几分回味。
-        
-          <p class="article-more-link">
-            <a href="/2017/12/03/%E9%9A%8F%E7%AC%94-0X01/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://yoursite.com/2017/12/03/%E9%9A%8F%E7%AC%94-0X01/" data-id="ck6upa8cz000gzrnigyzu887f" class="article-share-link">Share</a>
-      
-
-      
-
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9A%8F%E6%83%B3%E5%BD%95/" rel="tag">随想录</a></li></ul>
 
     </footer>
   </div>
@@ -566,7 +579,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ACM/" rel="tag">ACM</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CF/" rel="tag">CF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DP/" rel="tag">DP</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Topology/" rel="tag">Topology</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE%E8%AE%BA/" rel="tag">图论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F-%E7%BC%A9%E7%82%B9/" rel="tag">强连通分量/缩点</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82%E8%B0%88/" rel="tag">杂谈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B4%AA%E5%BF%83/" rel="tag">贪心</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E6%83%B3%E5%BD%95/" rel="tag">随想录</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ACM/" rel="tag">ACM</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CF/" rel="tag">CF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DP/" rel="tag">DP</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Topology/" rel="tag">Topology</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE%E8%AE%BA/" rel="tag">图论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F-%E7%BC%A9%E7%82%B9/" rel="tag">强连通分量/缩点</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82%E8%B0%88/" rel="tag">杂谈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B4%AA%E5%BF%83/" rel="tag">贪心</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E6%83%B3%E5%BD%95/" rel="tag">随想录</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -575,7 +588,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ACM/" style="font-size: 20px;">ACM</a> <a href="/tags/CF/" style="font-size: 10px;">CF</a> <a href="/tags/DP/" style="font-size: 16.67px;">DP</a> <a href="/tags/Topology/" style="font-size: 13.33px;">Topology</a> <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 10px;">图论</a> <a href="/tags/%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F-%E7%BC%A9%E7%82%B9/" style="font-size: 10px;">强连通分量/缩点</a> <a href="/tags/%E6%9D%82%E8%B0%88/" style="font-size: 10px;">杂谈</a> <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" style="font-size: 13.33px;">读书笔记</a> <a href="/tags/%E8%B4%AA%E5%BF%83/" style="font-size: 10px;">贪心</a> <a href="/tags/%E9%9A%8F%E6%83%B3%E5%BD%95/" style="font-size: 13.33px;">随想录</a>
+      <a href="/tags/ACM/" style="font-size: 20px;">ACM</a> <a href="/tags/CF/" style="font-size: 10px;">CF</a> <a href="/tags/DP/" style="font-size: 16.67px;">DP</a> <a href="/tags/Topology/" style="font-size: 13.33px;">Topology</a> <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 13.33px;">图论</a> <a href="/tags/%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F-%E7%BC%A9%E7%82%B9/" style="font-size: 10px;">强连通分量/缩点</a> <a href="/tags/%E6%9D%82%E8%B0%88/" style="font-size: 10px;">杂谈</a> <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" style="font-size: 13.33px;">读书笔记</a> <a href="/tags/%E8%B4%AA%E5%BF%83/" style="font-size: 10px;">贪心</a> <a href="/tags/%E9%9A%8F%E6%83%B3%E5%BD%95/" style="font-size: 13.33px;">随想录</a>
     </div>
   </div>
 
@@ -584,7 +597,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -594,6 +607,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/04/14/kruskal%E9%87%8D%E6%9E%84%E6%A0%91%E4%BB%8Eac%E5%88%B0tle-%E4%B8%8D%E6%98%AF/">kruskal重构树从ac到tle(不是)</a>
+          </li>
         
           <li>
             <a href="/2020/02/20/CF1296D/">CF1296D</a>
@@ -609,10 +626,6 @@
         
           <li>
             <a href="/2020/01/09/Luogu-P3119/">Luogu-P3119</a>
-          </li>
-        
-          <li>
-            <a href="/2020/01/02/Luogu-P4832/">Luogu-P4832</a>
           </li>
         
       </ul>

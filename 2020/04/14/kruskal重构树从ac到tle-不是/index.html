@@ -6,17 +6,17 @@
   
   <title>kruskal重构树从ac到tle(不是) | Outside</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="今天写到货车运输这题时。本想着拿倍增lca乱搞,结果在题解区发现了神奇的kruskal重构树觉得很有意思，来水一篇文章。 话不多说，先说书kruskal重构树到底是拿来干嘛的。 假定给你一张边权连通图(不连通其实也可以，这个等下再说)，想要知道从图中u出发到v的所有简单路径中的最小边权的最大值是多少(或者反过来求最大边权的最小值) 举个例子免得把你绕晕了 比如这张无向图中1，5两点的所有路径中最小">
+  <meta name="description" content="今天写到货车运输这题时。本想着拿倍增lca乱搞,结果在题解区发现了神奇的kruskal重构树觉得很有意思，来水一篇文章。">
 <meta name="keywords" content="ACM,图论">
 <meta property="og:type" content="article">
 <meta property="og:title" content="kruskal重构树从ac到tle(不是)">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;14&#x2F;kruskal%E9%87%8D%E6%9E%84%E6%A0%91%E4%BB%8Eac%E5%88%B0tle-%E4%B8%8D%E6%98%AF&#x2F;">
 <meta property="og:site_name" content="Outside">
-<meta property="og:description" content="今天写到货车运输这题时。本想着拿倍增lca乱搞,结果在题解区发现了神奇的kruskal重构树觉得很有意思，来水一篇文章。 话不多说，先说书kruskal重构树到底是拿来干嘛的。 假定给你一张边权连通图(不连通其实也可以，这个等下再说)，想要知道从图中u出发到v的所有简单路径中的最小边权的最大值是多少(或者反过来求最大边权的最小值) 举个例子免得把你绕晕了 比如这张无向图中1，5两点的所有路径中最小">
+<meta property="og:description" content="今天写到货车运输这题时。本想着拿倍增lca乱搞,结果在题解区发现了神奇的kruskal重构树觉得很有意思，来水一篇文章。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;04&#x2F;14&#x2F;Gvzizd.md.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;04&#x2F;14&#x2F;GxS0N8.md.png">
-<meta property="og:updated_time" content="2020-04-13T17:05:08.479Z">
+<meta property="og:updated_time" content="2020-04-16T14:32:13.613Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;04&#x2F;14&#x2F;Gvzizd.md.png">
   
@@ -92,31 +92,38 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>今天写到<a href="https://www.luogu.com.cn/problem/P1967" target="_blank" rel="noopener">货车运输</a>这题时。本想着拿倍增lca<del>乱搞</del>,结果在题解区发现了神奇的<strong>kruskal重构树</strong>觉得很有意思，<del>来水一篇文章</del>。</p>
+        <p>今天写到<a href="https://www.luogu.com.cn/problem/P1967" target="_blank" rel="noopener">货车运输</a>这题时。本想着拿倍增lca<del>乱搞</del>,结果在题解区发现了神奇的<strong>kruskal重构树</strong>觉得很有意思，<del>来水一篇文章</del>。<a id="more"></a></p>
 <p>话不多说，先说书kruskal重构树到底是拿来干嘛的。</p>
 <p>假定给你一张边权连通图(不连通其实也可以，这个等下再说)，想要知道从图中u出发到v的所有<strong>简单路径</strong>中的最小边权的最大值是多少(或者反过来求最大边权的最小值)</p>
 <p>举个例子免得把你绕晕了<br><img src="https://s1.ax1x.com/2020/04/14/Gvzizd.md.png" alt=""></p>
 <p>比如这张无向图中1，5两点的所有路径中最小权值的最大值就是4，而1，5所有路径的最大权值的最小值就是7。</p>
 <p>解决此问题有很多种方法比如树链剖分。当然这里讲的kurskal也是一种方法，而且更为简单。</p>
-<p>kruskal算法你作为一种简单高效($O(nlgn)$)的求MST算法相信大家都会。</p>
-<p>kruskal重构树则是在kruskal算法的基础上进行一些修改实现的。</p>
-<p>接下来来说一下kruskal重构树的具体实现。</p>
-<p>kruskal重构树的构造方法就是在利用kruskal算法求MST的同时把选出来的边作为一个新的节点连接这条边在原图中连接的两点的子树的根，把其原有的边权转化为新构成的点的点权，并把此点(刚刚新形成的点)作为新的根，不断重复这个过程直到所有点都被加入，则kruskal重构树构造完毕。可以比较容易的发现，原图的点全部都是kruskal重构树的叶子节点。而假设你要求u，v所有简单路径边权最大值得最小值，只需要求$lca(u, v)$的点权就得到了答案。(求最小边权最大则求最小生成树，反之求最大生成树)</p>
+<h2 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h2><p>顾名思义kruskal重构树肯定和kruskal算法有关(复杂度$O(Elog_2E)$)</p>
+<p>初始时与kruskal算法没有区别，对边进行排序(求最小边权最大则求最小生成树，反之求最大生成树)，初始化并查集。</p>
+<p>遍历排序好的边，对于当前遍历到的一条边 $(u, v)$(u, v连接的两点)，首先判断u，v所在的集合是否相同</p>
+<ul>
+<li>若相同 跳过这条边</li>
+<li>若不同 建立以新点w，为此点赋权值为$(u, v)$的权值，并把u，v各自所在的子树根节点与此点连接(这一步具体实现依赖并查集，见代码)</li>
+</ul>
+<!-- kruskal重构树的构造方法就是在利用kruskal算法求MST的同时把选出来的边作为一个新的节点连接这条边在原图中连接的两点的子树的根，把其原有的边权转化为新构成的点的点权，并把此点(刚刚新形成的点)作为新的根，不断重复这个过程直到所有点都被加入，则kruskal重构树构造完毕。可以比较容易的发现，原图的点全部都是kruskal重构树的叶子节点。而假设你要求u，v所有简单路径边权最大值得最小值，只需要求$lca(u, v)$的点权就得到了答案。(求最小边权最大则求最小生成树，反之求最大生成树) -->
 <p>先说明一下kruskal重构树的性质</p>
-<pre><code>(1)原图中每个点都是kruskal重构树的一个叶子节点
-(2)kruskal重构树是二叉树
-(3)kruskal重构树构成二叉堆
-(4)kruskal重构树共有 2n - 1个节点
-</code></pre><p>比如上图的kruskal重构树就是</p>
+<ul>
+<li>原图中每个点都是kruskal重构树的一个叶子节点</li>
+<li>kruskal重构树是二叉树</li>
+<li>kruskal重构树构成二叉堆</li>
+<li>kruskal重构树共有 2n - 1个节点</li>
+<li>原图中u，v间的路径边权最大(最小)为$lca(u, v)$的权值</li>
+</ul>
+<p>比如上图的kruskal重构树就是</p>
 <p><img src="https://s1.ax1x.com/2020/04/14/GxS0N8.md.png" alt=""></p>
 <p>还需要提一下的就是，对于非连通图，求出的是kruskal重构森林，每一棵树代表着那一个连通分量的kruskal重构树。</p>
 <p>废话不多说 上代码</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">auto buildKT(int n) -&gt; int &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">//初始化并查集，用于判断每个节点属于哪一个子树</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">2</span> * n ; ++i) parent[i] = i;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">int</span> id = n;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    sort(edges.begin(), edges.end(), [](Edge u, Edge v)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">return</span> u.w &gt; v.w;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;&amp;e : edges) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">int</span> u = find(e.f);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">int</span> v = find(e.t);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span>(u == v) <span class="keyword">continue</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        parent[u] = parent[v] = ++id;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        d[id] = e.w;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        <span class="comment">//vector邻接表存图</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        E[id].push_back(u);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">        E[id].push_back(v);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">        E[u].push_back(id);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">        E[v].push_back(id);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">//最后一个节点的id</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">//此处有点多余，最后id一定为2n - 1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> id;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">auto buildKT(int n) -&gt; int &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">//初始化并查集，用于判断每个节点属于哪一个子树</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">2</span> * n ; ++i) parent[i] = i;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">int</span> id = n;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    sort(edges.begin(), edges.end(), [](Edge u, Edge v)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">return</span> u.w &gt; v.w;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;&amp;e : edges) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        <span class="comment">// u, v不光代表f,t各自的并查集所属,还代表其子树的根</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">int</span> u = find(e.f);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">int</span> v = find(e.t);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span>(u == v) <span class="keyword">continue</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        parent[u] = parent[v] = ++id;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        d[id] = e.w;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        <span class="comment">//vector邻接表存图</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">        E[id].push_back(u);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">        E[id].push_back(v);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">        E[u].push_back(id);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">        E[v].push_back(id);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">//最后一个节点的id</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">//此处有点多余，最后id一定为2n - 1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> id;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2020/04/14/kruskal%E9%87%8D%E6%9E%84%E6%A0%91%E4%BB%8Eac%E5%88%B0tle-%E4%B8%8D%E6%98%AF/" data-id="ck8yq9zmo000euvnieqcbhtez" class="article-share-link">Share</a>
+        <a data-url="http://yoursite.com/2020/04/14/kruskal%E9%87%8D%E6%9E%84%E6%A0%91%E4%BB%8Eac%E5%88%B0tle-%E4%B8%8D%E6%98%AF/" data-id="ck92v5p50000eeoni20js60ym" class="article-share-link">Share</a>
       
 
       
